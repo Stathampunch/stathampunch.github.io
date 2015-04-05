@@ -12,7 +12,7 @@
 
       <!-- JavaScript insert start -->
 
-  <script src="tidy-table.min.js"></script>
+  <script src="tidy-table.js"></script>
   <script>
   $(document).ready(function() {
     $('#container')
@@ -25,7 +25,7 @@
       {
         columnTitles: ['Title', 'Year', 'TTSP', 'Image (if available)'],
         columnValues: [
-          ['Furious 7', '2015', '12:15', '<a href=screenshots/furious7.jpg>vs. The Rock</a>'],
+          ['Furious 7', '2015', '12:15', '<a href=\"screenshots/furious7.jpg\">vs. The Rock</a>'],
           ['Expendables 3', '2014', '14:57', ' '],
           ['Expendables 2', '2012', '38:00', ' ']
           ],
@@ -60,7 +60,7 @@
 
   function doSomething4(col) {
     col.on('click', function() {
-      alert('post-process(value=' + $(this).text() + ')');
+    //  alert('post-process(value=' + $(this).text() + ')');
     });
   }
 
