@@ -47,6 +47,9 @@ table.tidy_table th.sort_desc {
 table.tidy_table td {
 	border-top: 1px solid #CCCCCC;
 }
+table.tidy_table td:nth-child(3) {
+  text-align: right;
+}
 
 /* responsive (mobile devices) */
 

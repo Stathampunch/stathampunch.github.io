@@ -30,26 +30,26 @@
         ['Meg 2: The Trench', '2023', '4:55', '<a href=\"screenshots/meg2.jpg\">bad guy on ship</a>'],
         ['Fast X', '2023', '1:29:44', '<a href=\"screenshots/fastx.jpg\">fight with Han</a>'],
         ['Operation Fortune: Ruse de Guerre', '2023', '13:12', '<a href=\"screenshots/operation-fortune.jpg\">fight at party</a>'],
-        
+
         ['F9:  The Fast Saga', '2021', '2:19:34', '<a href=\"screenshots/f9.jpg\">guy hidden inside bag</a>'],
         ['Wrath of Man', '2021', '1:36:14', '<a href=\"screenshots/wrath-of-man.jpg\">fight during gun battle</a>'],
         ['Fast & Furious Presents: Hobbs & Shaw', '2019', '7:06', '<a href=\"screenshots/hobbs-and-shaw.jpg\">party thug</a>'],
-      
+
         ['The Meg', '2018', '∞', 'no punch!'],
          ['Fate of the Furious', '2017', '34:20', 'He punches prison guard'],
          ['Mechanic: Resurrection', '2016', '4:56', 'Goons at seaside cafe'],
           ['Spy', '2015', '1:02:11', '2 goons in the casino'],
           ['Furious 7', '2015', '12:15', '<a href=\"screenshots/furious7.jpg\">vs. The Rock</a>'],
           ['Expendables 3', '2014', '14:55', '<a href=\"screenshots/expendables3.png\">off-screen rando</a>'],
-       /*    ['Parker', '2013', '', ''],      */    
+       /*    ['Parker', '2013', '', ''],      */
           ['Expendables 2', '2012', '1:05:56', '<a href=\"screenshots/expendables2.png\">punch w/ knife</a>'],
          ['Blitz', '2011', '1:43', '<a href=\"screenshots/blitz.png\">rando street thug</a>'],
         ['Killer Elite', '2011', '14:12', '<a href=\"screenshots/killerelite.png\">prison guard</a>'],
-        ['Crank 2 High Voltage', '2009', '4:59', '<a href=\"screenshots/crank2.png\">bad guy doctor</a>'],            
-        ['Transporter 3', '2008', '12:15', '<a href=\"screenshots/transporter3.png\">hired goons</a>'],  
-        ['Crank', '2006', '43:18', '<a href=\"screenshots/crank.png\">bad guy\'s goons</a>'],                 
-        ['Transporter 2', '2005', '2:44', '<a href=\"screenshots/transporter2.png\">garage punk</a>'],   
-         ['The Transporter', '2002', '22:54', '<a href=\"screenshots/transporter.png\">motorcycle cop</a>'],         
+        ['Crank 2 High Voltage', '2009', '4:59', '<a href=\"screenshots/crank2.png\">bad guy doctor</a>'],
+        ['Transporter 3', '2008', '12:15', '<a href=\"screenshots/transporter3.png\">hired goons</a>'],
+        ['Crank', '2006', '43:18', '<a href=\"screenshots/crank.png\">bad guy\'s goons</a>'],
+        ['Transporter 2', '2005', '2:44', '<a href=\"screenshots/transporter2.png\">garage punk</a>'],
+         ['The Transporter', '2002', '22:54', '<a href=\"screenshots/transporter.png\">motorcycle cop</a>'],
          ['Snatch', '2000', '∞', 'no punch!'],
           ['Lock, Stock, &amp; Two Smoking Barrels', '1998', '1:08:05', '<a href=\"screenshots/lockstock.png\">traffic warden</a>']
           ],
@@ -62,6 +62,22 @@
           table:  doSomething3,
           column: doSomething4,
           menu:   doSomething5
+        },
+        sortByPattern: function(colNum, val) {
+          if (colNum !== 2) {
+            return val;
+          }
+          const segments = val.split(':').reverse()
+          let seconds = 0;
+          segments.forEach(function(segment, index){
+            segment = parseInt(segment, 10)
+            if (isNaN(segment)) {
+              seconds = Infinity
+              return
+            }
+            seconds += segment * 60 ** index;
+          })
+          return seconds;
         }
       });
   });
@@ -106,7 +122,7 @@
 
   <!-- CSS overrides start -->
 
-  
+
   <link rel="stylesheet" type="text/css" href="demo.css">
 
   <style type="text/css">
@@ -186,7 +202,7 @@
 
     </section>
 
-  
+
   </body>
 </html>
 
