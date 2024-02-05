@@ -70,7 +70,6 @@
           const segments = val.split(':').reverse()
           let seconds = 0;
           segments.forEach(function(segment, index){
-            index += 1;
             segment = parseInt(segment, 10)
             if (isNaN(segment)) {
               seconds = Infinity
