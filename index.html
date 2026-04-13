@@ -1,212 +1,672 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Time to Statham Punch</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Time to Statham Punch</title>
+<meta name="description" content="How long into each Jason Statham film before he throws his first punch? The definitive TTSP dataset."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      <!-- JavaScript insert start -->
+/* *dark mode :root {
+    --bg:        #0f0f0f;
+    --surface:   #181818;
+    --surface2:  #202020;
+    --border:    #2a2a2a;
+    --text:      #f0f0f0;
+    --muted:     #888;
+    --faint:     #444;
+    --red:       #e5383b;
+    --red-dim:   rgba(229,56,59,0.12);
+    --green:     #4ade80;
+    --green-dim: rgba(74,222,128,0.12);
+    --blue:      #60a5fa;
+    --blue-dim:  rgba(96,165,250,0.12);
+    --amber:     #fbbf24;
+  }*/
 
-  <script src="tidy-table.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('#container')
-      .TidyTable({
-        enableCheckbox: false,
-        enableMenu:     false,
-        reverseSortDir: false,
-        responsive:     false
-      },
-      {
-        columnTitles: ['Title', 'Year', 'TTSP', 'Details of Punch'],
-        columnValues: [
-        ['The Beekeeper', '2024', '20:47', '<a href=\"screenshots/beekeeper.jpg\">security guard</a>'],
-        ['Expend4bles', '2023', '9:55', '<a href=\"screenshots/expend4bles.jpg\">short thug</a>'],
-        ['Meg 2: The Trench', '2023', '4:55', '<a href=\"screenshots/meg2.jpg\">bad guy on ship</a>'],
-        ['Fast X', '2023', '1:29:44', '<a href=\"screenshots/fastx.jpg\">fight with Han</a>'],
-        ['Operation Fortune: Ruse de Guerre', '2023', '13:12', '<a href=\"screenshots/operation-fortune.jpg\">fight at party</a>'],
+  :root {
+  --bg:        #f5f2ee;
+  --surface:   #ffffff;
+  --surface2:  #f0ece6;
+  --border:    #ddd8d0;
+  --text:      #1a1a1a;
+  --muted:     #6b6560;
+  --faint:     #b0a89e;
+  --red:       #c0292c;
+  --red-dim:   rgba(192,41,44,0.08);
+  --green:     #1d7a3a;
+  --green-dim: rgba(29,122,58,0.08);
+  --blue:      #1a5fa8;
+  --blue-dim:  rgba(26,95,168,0.08);
+  --amber:     #92620a;
+}
 
-        ['F9:  The Fast Saga', '2021', '2:19:34', '<a href=\"screenshots/f9.jpg\">guy hidden inside bag</a>'],
-        ['Wrath of Man', '2021', '1:36:14', '<a href=\"screenshots/wrath-of-man.jpg\">fight during gun battle</a>'],
-        ['Fast & Furious Presents: Hobbs & Shaw', '2019', '7:06', '<a href=\"screenshots/hobbs-and-shaw.jpg\">party thug</a>'],
+  html { scroll-behavior: smooth; }
 
-        ['The Meg', '2018', '∞', 'no punch!'],
-         ['Fate of the Furious', '2017', '34:20', 'He punches prison guard'],
-         ['Mechanic: Resurrection', '2016', '4:56', 'Goons at seaside cafe'],
-          ['Spy', '2015', '1:02:11', '2 goons in the casino'],
-          ['Furious 7', '2015', '12:15', '<a href=\"screenshots/furious7.jpg\">vs. The Rock</a>'],
-          ['Expendables 3', '2014', '14:55', '<a href=\"screenshots/expendables3.png\">off-screen rando</a>'],
-       /*    ['Parker', '2013', '', ''],      */
-          ['Expendables 2', '2012', '1:05:56', '<a href=\"screenshots/expendables2.png\">punch w/ knife</a>'],
-         ['Blitz', '2011', '1:43', '<a href=\"screenshots/blitz.png\">rando street thug</a>'],
-        ['Killer Elite', '2011', '14:12', '<a href=\"screenshots/killerelite.png\">prison guard</a>'],
-        ['Crank 2 High Voltage', '2009', '4:59', '<a href=\"screenshots/crank2.png\">bad guy doctor</a>'],
-        ['Transporter 3', '2008', '12:15', '<a href=\"screenshots/transporter3.png\">hired goons</a>'],
-        ['Crank', '2006', '43:18', '<a href=\"screenshots/crank.png\">bad guy\'s goons</a>'],
-        ['Transporter 2', '2005', '2:44', '<a href=\"screenshots/transporter2.png\">garage punk</a>'],
-         ['The Transporter', '2002', '22:54', '<a href=\"screenshots/transporter.png\">motorcycle cop</a>'],
-         ['Snatch', '2000', '∞', 'no punch!'],
-          ['Lock, Stock, &amp; Two Smoking Barrels', '1998', '1:08:05', '<a href=\"screenshots/lockstock.png\">traffic warden</a>']
-          ],
-        menuOptions: [
-          ['- Action -', null],
-          ['Callback 1', { callback: doSomething1 }],
-          ['Callback 2', { callback: doSomething2 }]
-        ],
-        postProcess: {
-          table:  doSomething3,
-          column: doSomething4,
-          menu:   doSomething5
-        },
-        sortByPattern: function(colNum, val) {
-          if (colNum !== 2) {
-            return val;
-          }
-          const segments = val.split(':').reverse()
-          let seconds = 0;
-          segments.forEach(function(segment, index){
-            segment = parseInt(segment, 10)
-            if (isNaN(segment)) {
-              seconds = Infinity
-              return
-            }
-            seconds += segment * 60 ** index;
-          })
-          return seconds;
-        }
-      });
-  });
-
-  // do something with selected results
-  function doSomething1(rows) {
-    alert('callback1(rows=' + rows.length + ')');
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
   }
 
-  function doSomething2(rows) {
-    alert('callback2(rows=' + rows.length + ')');
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* hero image ----- */
+
+  .hero-img {
+  max-width: 960px;
+  margin: 0 auto;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/*.hero-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0) 40%,
+    var(--surface) 100%
+  );
+}*/
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 2.5rem 2rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
   }
 
-  // post-process DOM elements
-  function doSomething3(table) {
-    table.on('hover', function() {
-      //alert('post-process(table)');
-    });
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
   }
 
-  function doSomething4(col) {
-    col.on('click', function() {
-    //  alert('post-process(value=' + $(this).text() + ')');
-    });
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 10px;
   }
 
-  function doSomething5(menu) {
-    menu.on('change', function() {
-      //alert('post-process(menu)');
-    });
+  h1 .punch { color: var(--red); }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.6;
   }
-  </script>
 
-  <!-- JavaScript insert end -->
+  /* ── STATS ROW ───────────────────────────────────── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 960px;
+    margin: 0 auto;
+  }
 
+  .stat {
+    background: var(--surface);
+    padding: 16px 20px;
+    text-align: left;
+  }
 
-  <!-- CSS include start -->
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
 
-  <link rel="stylesheet" type="text/css" href="tidy-table.min.css">
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
 
-  <!-- CSS include end -->
+  .stat-value.red   { color: var(--red); }
+  .stat-value.green { color: var(--green); }
 
-  <!-- CSS overrides start -->
+  /* ── CONTROLS ────────────────────────────────────── */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    max-width: 960px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
 
+  .search-wrap {
+    flex: 1;
+    position: relative;
+  }
 
-  <link rel="stylesheet" type="text/css" href="demo.css">
+  .search-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--faint);
+    font-size: 14px;
+    pointer-events: none;
+  }
 
-  <style type="text/css">
-    .site-footer-credits {
-      font-size: 11px;
+  input[type="text"] {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 12px 8px 32px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  input[type="text"]:focus { border-color: var(--red); }
+  input[type="text"]::placeholder { color: var(--faint); }
+
+  select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 10px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  select:focus { border-color: var(--red); }
+
+  /* ── TABLE ───────────────────────────────────────── */
+  .table-outer {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+  }
+
+  col.c-rank   { width: 44px; }
+  col.c-title  { width: auto; }
+  col.c-year   { width: 68px; }
+  col.c-ttsp   { width: 160px; }
+  col.c-detail { width: 190px; }
+
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+
+  thead th:hover { color: var(--text); }
+  thead th.sorted { color: var(--red); }
+
+  .sort-arrow { margin-left: 3px; opacity: 0.35; font-size: 10px; }
+  .sorted .sort-arrow { opacity: 1; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+
+  td {
+    padding: 11px 14px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  td.rank { color: var(--faint); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+  td.title {
+    font-weight: 500;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  td.year { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  td.ttsp { white-space: nowrap; }
+
+  .ttsp-val {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    display: block;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .bar-track {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 3px;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  td.detail {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  td.detail a { color: var(--blue); }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+
+  .badge-fast    { background: var(--green-dim); color: var(--green); }
+  .badge-nopunch { background: var(--red-dim);   color: var(--red);   }
+  .badge-slow    { background: rgba(251,191,36,0.12); color: var(--amber); }
+
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+  .about {
+    max-width: 960px;
+    margin: 0 auto;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .about h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .about p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .about p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    max-width: 960px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 16px 2rem;
+    font-size: 12px;
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  footer a { color: var(--faint); }
+  footer a:hover { color: var(--muted); text-decoration: none; }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 640px) {
+    header, .stats-row, .controls, .table-outer, .about, footer {
+      border-left: none;
+      border-right: none;
     }
 
-  </style>
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .about { grid-template-columns: 1fr; gap: 1.25rem; }
 
-  <!-- CSS overrides end -->
+    col.c-detail { width: 0; display: none; }
+    thead th:last-child, td:last-child { display: none; }
 
-  <!-- favicon nonsense -->
+    h1 { font-size: 1.75rem; }
+    header { padding: 1.5rem 1rem 1.25rem; }
+    .controls { padding: 10px; }
+    td, thead th { padding: 10px; }
+  }
+</style>
+</head>
+<body>
 
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-<meta name="theme-color" content="#ffffff">
+  <div class="hero-img">
+  <img src="screenshots/header-still.jpg" alt="Jason Statham mid-punch"/>
+</div>
 
+<header>
+  <div class="eyebrow">The definitive dataset &nbsp;·&nbsp; tracking since 2015</div>
+  <h1>Time to <span class="punch">Statham Punch</span></h1>
+  <p class="tagline">How long into each film before Jason Statham throws his first punch in anger? Fist bumps and friendly taps don't count.</p>
+</header>
 
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Time to Statham punch</h1>
-      <h2 class="project-tagline">How long do you have to wait?</h2>
-    </section>
+<div class="stats-row">
+  <div class="stat">
+    <div class="stat-label">Films tracked</div>
+    <div class="stat-value" id="sFilms">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Fastest punch</div>
+    <div class="stat-value green" id="sFastest">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Slowest punch</div>
+    <div class="stat-value red" id="sSlowest">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Avg wait</div>
+    <div class="stat-value" id="sAvg">—</div>
+  </div>
+</div>
 
-    <section class="main-content">
-      <h3>
-<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h3>
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search films…" oninput="render()" autocomplete="off" spellcheck="false"/>
+  </div>
+  <select id="sortSel" onchange="render()">
+    <option value="ttsp-asc">Fastest first</option>
+    <option value="ttsp-desc">Slowest first</option>
+    <option value="year-desc">Newest first</option>
+    <option value="year-asc">Oldest first</option>
+    <option value="title-asc">A–Z</option>
+  </select>
+</div>
 
-  <p>
-      Years ago, I started tracking how long it took <a href="http://www.imdb.com/name/nm0005458/">Jason Statham</a> to punch someone (TTSP) in his films, and then I realized it should exist as a service to all, so this site was born in 2015. The first punch by Statham is any punch thrown in anger at another person during his films, ideally at the face. Fist bumps or friendly shoulder punches don't count. Time starts as soon as the movie begins.
-  </p>
+<div class="table-outer">
+  <table>
+    <colgroup>
+      <col class="c-rank"/>
+      <col class="c-title"/>
+      <col class="c-year"/>
+      <col class="c-ttsp"/>
+      <col class="c-detail"/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th onclick="colSort('rank')">#<span class="sort-arrow">↕</span></th>
+        <th onclick="colSort('title')">Film<span class="sort-arrow">↕</span></th>
+        <th onclick="colSort('year')">Year<span class="sort-arrow">↕</span></th>
+        <th onclick="colSort('ttsp')" class="sorted">TTSP<span class="sort-arrow">↕</span></th>
+        <th>Details of punch</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
 
+<div class="about">
+  <div>
+    <h2>About</h2>
+    <p>Years ago, I started tracking how long it took <a href="https://www.imdb.com/name/nm0005458/">Jason Statham</a> to punch someone (TTSP) in his films, and then realized it should exist as a service to all. This site was born in 2015.</p>
+    <p>The first punch is any punch thrown in anger at another person — ideally at the face. Time starts as soon as the movie begins.</p>
+  </div>
+  <div>
+    <h2>Suggestions</h2>
+    <p>Want to help fill out the TTSP data for every film? <a href="mailto:mathowie@gmail.com">Email the data</a> and it'll be added to the site.</p>
+    <p>Built by <a href="https://a.wholelottanothing.org">Matthew Haughey</a> (<a href="https://github.com/mathowie">@mathowie</a>). Hosted on <a href="https://pages.github.com">GitHub Pages</a>.</p>
+  </div>
+</div>
 
-<h3>
-<a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h3>
+<footer>
+  <span>time.to.stathampun.ch</span>
+  <span>I love Jason Statham's movies — even his serious ones — but he's in his element when he's punching someone in the face.</span>
+</footer>
 
-  <p>
-    Clicking column headers will re-sort the data
-  </p>
+<script>
+(function() {
+  function toSec(t) {
+    if (!t || t === '∞') return null;
+    var p = t.split(':').map(Number);
+    if (p.length === 3) return p[0]*3600 + p[1]*60 + p[2];
+    if (p.length === 2) return p[0]*60 + p[1];
+    return null;
+  }
 
+  function fmtSec(s) {
+    if (s === null) return '∞';
+    var h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+    if (h > 0) return h+'h '+m+'m';
+    if (m > 0) return m+'m'+(sec>0?' '+sec+'s':'');
+    return sec+'s';
+  }
 
-<!-- HTML example start -->
+  // hue: 120=green (fast) → 0=red (slow)
+  function barColor(sec, maxSec) {
+    var hue = Math.round(120 - (sec / maxSec) * 120);
+    return 'hsl('+hue+',65%,48%)';
+  }
 
-  <div id="container"></div>
+  var DATA = [
+    {title:'The Beekeeper',       year:2024, ttsp:'20:47', detail:'<a href="screenshots/beekeeper.jpg">security guard</a>'},
+    {title:'Expend4bles',         year:2023, ttsp:'9:55',  detail:'<a href="screenshots/expend4bles.jpg">short thug</a>'},
+    {title:'Meg 2: The Trench',   year:2023, ttsp:'4:55',  detail:'<a href="screenshots/meg2.jpg">bad guy on ship</a>'},
+    {title:'Fast X',              year:2023, ttsp:'1:29:44',detail:'<a href="screenshots/fastx.jpg">fight with Han</a>'},
+    {title:'Operation Fortune: Ruse de Guerre', year:2023, ttsp:'13:12', detail:'<a href="screenshots/operation-fortune.jpg">fight at party</a>'},
+    {title:'F9: The Fast Saga',   year:2021, ttsp:'2:19:34',detail:'<a href="screenshots/f9.jpg">guy hidden inside bag</a>'},
+    {title:'Wrath of Man',        year:2021, ttsp:'1:36:14',detail:'<a href="screenshots/wrath-of-man.jpg">fight during gun battle</a>'},
+    {title:'Fast & Furious Presents: Hobbs & Shaw', year:2019, ttsp:'7:06', detail:'<a href="screenshots/hobbs-and-shaw.jpg">party thug</a>'},
+    {title:'The Meg',             year:2018, ttsp:'∞',     detail:'no punch!'},
+    {title:'Fate of the Furious', year:2017, ttsp:'34:20', detail:'punches prison guard'},
+    {title:'Mechanic: Resurrection', year:2016, ttsp:'4:56', detail:'goons at seaside cafe'},
+    {title:'Spy',                 year:2015, ttsp:'1:02:11',detail:'2 goons in the casino'},
+    {title:'Furious 7',           year:2015, ttsp:'12:15', detail:'<a href="screenshots/furious7.jpg">vs. The Rock</a>'},
+    {title:'Expendables 3',       year:2014, ttsp:'14:55', detail:'<a href="screenshots/expendables3.png">off-screen rando</a>'},
+    {title:'Expendables 2',       year:2012, ttsp:'1:05:56',detail:'<a href="screenshots/expendables2.png">punch w/ knife</a>'},
+    {title:'Blitz',               year:2011, ttsp:'1:43',  detail:'<a href="screenshots/blitz.png">rando street thug</a>'},
+    {title:'Killer Elite',        year:2011, ttsp:'14:12', detail:'<a href="screenshots/killerelite.png">prison guard</a>'},
+    {title:'Crank 2 High Voltage',year:2009, ttsp:'4:59',  detail:'<a href="screenshots/crank2.png">bad guy doctor</a>'},
+    {title:'Transporter 3',       year:2008, ttsp:'12:15', detail:'<a href="screenshots/transporter3.png">hired goons</a>'},
+    {title:'Crank',               year:2006, ttsp:'43:18', detail:'<a href="screenshots/crank.png">bad guy\'s goons</a>'},
+    {title:'Transporter 2',       year:2005, ttsp:'2:44',  detail:'<a href="screenshots/transporter2.png">garage punk</a>'},
+    {title:'The Transporter',     year:2002, ttsp:'22:54', detail:'<a href="screenshots/transporter.png">motorcycle cop</a>'},
+    {title:'Snatch',              year:2000, ttsp:'∞',     detail:'no punch!'},
+    {title:'Lock, Stock, & Two Smoking Barrels', year:1998, ttsp:'1:08:05', detail:'<a href="screenshots/lockstock.png">traffic warden</a>'},
+  ];
 
+  DATA.forEach(function(d) { d.sec = toSec(d.ttsp); });
 
+  var withPunch = DATA.filter(function(d) { return d.sec !== null; });
+  var maxSec = Math.max.apply(null, withPunch.map(function(d) { return d.sec; }));
+  var minSec = Math.min.apply(null, withPunch.map(function(d) { return d.sec; }));
+  var avgSec = Math.round(withPunch.reduce(function(a,d){ return a+d.sec; }, 0) / withPunch.length);
 
-<!-- HTML example end -->
+  document.getElementById('sFilms').textContent = DATA.length;
+  document.getElementById('sFastest').textContent = fmtSec(minSec);
+  document.getElementById('sSlowest').textContent = fmtSec(maxSec);
+  document.getElementById('sAvg').textContent = fmtSec(avgSec);
 
+  var activeSortKey = 'ttsp';
+  var activeSortDir = 1;
 
-<p>
-   I love Jason Statham's acting and movies (even his serious ones!) but he's in his element when he's punching someone and I love that almost every movie he makes has him doing just that at least once.
-</p>
+  window.colSort = function(k) {
+    if (activeSortKey === k) {
+      activeSortDir *= -1;
+    } else {
+      activeSortKey = k;
+      activeSortDir = 1;
+    }
+    // Sync select
+    var sel = document.getElementById('sortSel');
+    if (k==='ttsp') sel.value = activeSortDir===1 ? 'ttsp-asc' : 'ttsp-desc';
+    else if (k==='year') sel.value = activeSortDir===-1 ? 'year-desc' : 'year-asc';
+    else if (k==='title') sel.value = 'title-asc';
+    render();
+  };
 
-<h3>
-<a id="suggestions" class="anchor" href="#suggestions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Suggestions</h3>
+  window.render = function() {
+    var q = document.getElementById('search').value.toLowerCase().trim();
+    var sv = document.getElementById('sortSel').value;
 
-<p>
-  Want to help fill out the TTSP data for every film? <a href="https://a.wholelottanothing.org/contact/">Email the data to me</a> and I'll add it to this site.
-</p>
+    // Sync sort state from select
+    if (sv==='ttsp-asc')  { activeSortKey='ttsp'; activeSortDir=1; }
+    if (sv==='ttsp-desc') { activeSortKey='ttsp'; activeSortDir=-1; }
+    if (sv==='year-desc') { activeSortKey='year'; activeSortDir=-1; }
+    if (sv==='year-asc')  { activeSortKey='year'; activeSortDir=1; }
+    if (sv==='title-asc') { activeSortKey='title'; activeSortDir=1; }
 
-      <footer class="site-footer">
+    var rows = DATA.filter(function(d) {
+      return !q || d.title.toLowerCase().indexOf(q) !== -1;
+    });
 
-        <span class="site-footer-credits">This site was built by Matt Haughey (<a href="https://github.com/mathowie" class="user-mention">@mathowie</a>) and is hosted on <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+    rows = rows.slice().sort(function(a, b) {
+      if (activeSortKey === 'ttsp') {
+        if (a.sec===null && b.sec===null) return a.title.localeCompare(b.title);
+        if (a.sec===null) return activeSortDir===1 ? 1 : -1;
+        if (b.sec===null) return activeSortDir===1 ? 1 : -1;
+        return (a.sec - b.sec) * activeSortDir;
+      }
+      if (activeSortKey === 'year') return (b.year - a.year) * activeSortDir;
+      if (activeSortKey === 'title') return a.title.localeCompare(b.title) * activeSortDir;
+      return 0;
+    });
 
-    </section>
+    // Update sorted header highlight
+    document.querySelectorAll('thead th').forEach(function(th) { th.classList.remove('sorted'); });
+    var thMap = { ttsp: 3, year: 1, title: 1 };
+    var ths = document.querySelectorAll('thead th');
+    if (activeSortKey==='ttsp')  ths[3].classList.add('sorted');
+    if (activeSortKey==='year')  ths[2].classList.add('sorted');
+    if (activeSortKey==='title') ths[1].classList.add('sorted');
 
+    var tbody = document.getElementById('tbody');
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="no-results">No films match your search</td></tr>';
+      return;
+    }
 
-  </body>
+    var rankN = 0;
+    var html = rows.map(function(d) {
+      var hasPunch = d.sec !== null;
+      if (hasPunch) rankN++;
+
+      var pct = hasPunch ? Math.round((d.sec / maxSec) * 100) : 0;
+      var color = hasPunch ? barColor(d.sec, maxSec) : '#333';
+
+      var rankCell = hasPunch ? rankN : '—';
+
+      var badge = '';
+      if (!hasPunch) {
+        badge = '<span class="badge badge-nopunch">No punch</span>';
+      } else if (d.sec <= 180) {
+        badge = '<span class="badge badge-fast">Fast</span>';
+      } else if (d.sec >= 4000) {
+        badge = '<span class="badge badge-slow">Slow burn</span>';
+      }
+
+      var ttspCell;
+      if (hasPunch) {
+        ttspCell = '<span class="ttsp-val">'+d.ttsp+badge+'</span>'
+          + '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+color+'"></div></div>';
+      } else {
+        ttspCell = '<span class="ttsp-val" style="color:#e5383b">∞'+badge+'</span>';
+      }
+
+      return '<tr>'
+        + '<td class="rank">'+rankCell+'</td>'
+        + '<td class="title">'+escHtml(d.title)+'</td>'
+        + '<td class="year">'+d.year+'</td>'
+        + '<td class="ttsp">'+ttspCell+'</td>'
+        + '<td class="detail">'+d.detail+'</td>'
+        + '</tr>';
+    }).join('');
+
+    tbody.innerHTML = html;
+  };
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  render();
+})();
+</script>
+</body>
 </html>
-
